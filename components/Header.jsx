@@ -9,7 +9,7 @@ const Header = () => {
                     <ul className='cate'>
                         <li>BEST</li>
                         <li>NEW</li>
-                        <li><Image src="/images/top_cart.png" alt="Cart Icon" width={50} height={50} />
+                        <li><Image src="/images/top_cart.png" alt="Cart Icon" width={30} height={30} />
                         </li>
                     </ul>
                 </div>
