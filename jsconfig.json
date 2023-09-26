@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      // paths 모듈 이름을 경로와 매핑 해줌 @/components = .src/components
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  }
+}
