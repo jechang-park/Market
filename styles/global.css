@@ -4,15 +4,62 @@
     font-weight: 700;
     font-style: normal;
 }
+
 @import "reset.css";
 
-*{
-font-family: 'TheJamsil5Bold';
+* {
+    font-family: 'TheJamsil5Bold';
+    outline: 1px solid #eee;
 }
 
-.cate{
+.App {
+    width: 100%;
+}
+.top_logo{
+    margin-left:30px;
+}
+.header_sec01 {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0px 30px 0px;
+    min-width:1280px;
+    width:100%;
+}
+.cate {
     display: flex;
 }
-.ctn_0{
+
+.prdImg {
     cursor: pointer;
 }
+
+.ctn_0 {
+    width: 100%;
+}
+
+.ctn_0 img {
+    min-width: 1280px;
+    width:100%;
+}
+
+
+.ctn_1 {
+    display: flex;
+    min-width:1280px;
+    width:100%;
+    flex-wrap: wrap;
+}
+.cate li {
+    margin-right: 30px;
+}
+
+
+.ctn_1 .prdImg {
+    padding: 50px;
+}
+
+.ctn_1 .prdImg p {
+    text-align: left;
+    padding-top: 25px;
+}
+
