@@ -12,19 +12,29 @@
     outline: 1px solid #eee;
 }
 
+.text_0 {
+    font-size: 40px;
+}
+
+.text_1 {
+    font-size: 30px;
+}
+
 .App {
     width: 100%;
 }
-.top_logo{
-    margin-left:30px;
+
+.top_logo {
+    margin-left: 30px;
 }
+
 .header_sec01 {
     display: flex;
     justify-content: space-between;
     padding: 30px 0px 30px 0px;
-    min-width:1280px;
-    width:100%;
+    width: 100%;
 }
+
 .cate {
     display: flex;
 }
@@ -38,17 +48,17 @@
 }
 
 .ctn_0 img {
-    min-width: 1280px;
-    width:100%;
+    width: 100%;
 }
 
 
 .ctn_1 {
     display: flex;
-    min-width:1280px;
-    width:100%;
+    max-width: 1280px;
+    justify-content: center;
     flex-wrap: wrap;
 }
+
 .cate li {
     margin-right: 30px;
 }
@@ -63,3 +73,34 @@
     padding-top: 25px;
 }
 
+.ctn_box img {
+    width: 500px;
+    height: 500px;
+}
+
+.ctn_box {
+    display: flex;
+    justify-content: space-around;
+}
+
+.ctn_box .detail button {
+    background-color: #4CAF50;
+    /* 예시로 녹색을 사용합니다. 원하는 색으로 변경 가능합니다. */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.ctn_box .detail .text_0 {
+    padding: 10px;
+}
+
+.ctn_box .detail .text_1 {
+    padding: 30px;
+}
