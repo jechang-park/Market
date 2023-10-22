@@ -54,7 +54,6 @@
 
 .ctn_1 {
     display: flex;
-    max-width: 1280px;
     justify-content: center;
     flex-wrap: wrap;
 }

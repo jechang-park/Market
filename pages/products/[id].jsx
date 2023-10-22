@@ -10,15 +10,16 @@ import { useCart } from '../../components/cartContext';
 export default function ProductDetailPage() {
     const router = useRouter();
     const { id } = router.query;
-    const { cartCount, setCartCount } = useCart();
+    const { cartCount, addToCart } = useCart();
     const product = productData.find(p => p.id == id);
     const [quantity, setQuantity] = useState(0);
-    const [totalAmount, setTotalAmount] = useState(0); 
-    const handleAddToCart = () => {
-        // 장바구니에 상품 추가 로직 처리
-        setCartCount(prev => prev + 1);
-      };
+    const [totalAmount, setTotalAmount] = useState(0);
 
+
+    const handleAddToCart = () => {
+        // 선택된 상품 정보와 수량을 장바구니에 추가합니다.
+        addToCart({ ...product, quantity }); // 상품 데이터와 수량 정보를 포함하여 addToCart 호출
+    };
     const handleClick = async () => {
         const tossPayments = await loadTossPayments(process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY);
         await tossPayments.requestPayment("카드", {
@@ -61,7 +62,7 @@ export default function ProductDetailPage() {
                     <p className='text_1'>{product.price}원</p>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <button className='button-quantity' onClick={decreaseQuantity} style={{ marginRight: '10px' }}>-</button>
-                        <span>{quantity}</span> 
+                        <span>{quantity}</span>
                         <button className='button-quantity' onClick={increaseQuantity} style={{ marginLeft: '10px' }}>+</button>
                     </div>
                     <button className='buy' onClick={handleClick}>바로구매</button>
