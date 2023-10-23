@@ -1,12 +1,10 @@
 // pages/cart.js
 import React from 'react';
-import { useCart } from '../../components/cartContext';
 import Header from '../../components/Header';
 import Image from 'next/image';
 import { loadTossPayments } from "@tosspayments/payment-sdk";
 
-const CartPage = () => {
-    const { cartItems, setCartItems } = useCart();
+const CartPage = ({ cartItems, error }) => {
 
 
 
@@ -19,7 +17,7 @@ const CartPage = () => {
 
     const handleQuantityChange = (productId, newQuantity) => {
         // 상품의 수량을 업데이트
-        const updatedItems = cartItems.map(item => 
+        const updatedItems = cartItems.map(item =>
             item.id === productId ? { ...item, quantity: newQuantity } : item
         );
         setCartItems(updatedItems);
@@ -73,8 +71,8 @@ const CartPage = () => {
                         <div className='cart-item-info'>
                             <h2>{product.title}</h2>
                             <p>{product.price.toLocaleString()}원</p>
-                            <input 
-                                type='number' 
+                            <input
+                                type='number'
                                 value={product.quantity}
                                 onChange={(e) => handleQuantityChange(product.id, parseInt(e.target.value))}
                             />
@@ -92,3 +90,17 @@ const CartPage = () => {
 };
 
 export default CartPage;
+
+
+
+export async function getServerSideProps(context) {
+    try {
+        const userId = context.req.cookies.userId; // Or another way to identify the user
+        const cartItems = await getCartItems(userId); // This function should contact your API or DB
+
+        return { props: { cartItems } };
+    } catch (error) {
+        console.error("Failed to fetch cart items", error);
+        return { props: { error: error.message } };
+    }
+}

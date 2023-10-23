@@ -1,21 +1,39 @@
 // pages/products/[id].js
-import { useRouter } from 'next/router';
 import Header from '/components/Header';
 import Image from 'next/image';
 import { loadTossPayments } from "@tosspayments/payment-sdk";
 import React, { useState } from 'react';
-import { useCart } from '../../components/cartContext';
 
-export default function ProductDetailPage({product}) {  // props 객체를 구조 분해 할당하여 product를 직접 가져옵니다.
-    const { cartCount, addToCart } = useCart();
+export default function ProductDetailPage({ product }) {  // props 객체를 구조 분해 할당하여 product를 직접 가져옵니다.
     const [quantity, setQuantity] = useState(0);
     const [totalAmount, setTotalAmount] = useState(0);
 
 
-    const handleAddToCart = () => {
-        // 선택된 상품 정보와 수량을 장바구니에 추가합니다.
-        addToCart({ ...product, quantity }); // 상품 데이터와 수량 정보를 포함하여 addToCart 호출
+    const handleAddToCart = async () => {
+        const cartItem = { ...product, quantity };
+
+        try {
+            // 여기서 /api/cart는 당신의 서버 측 API 경로입니다.
+            const response = await fetch('/api/cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(cartItem), // 상품 데이터를 JSON으로 변환하여 요청 본문에 넣습니다.
+            });
+
+            if (!response.ok) {
+                throw new Error('장바구니에 상품을 추가하는 데 실패했습니다.');
+            }
+
+            // 필요한 경우, 응답으로부터 추가 데이터를 받아 처리합니다.
+            const responseData = await response.json();
+            console.log(responseData);
+        } catch (error) {
+            console.error(error);
+        }
     };
+
     const handleClick = async () => {
         const tossPayments = await loadTossPayments(process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY);
         await tossPayments.requestPayment("카드", {
@@ -44,7 +62,7 @@ export default function ProductDetailPage({product}) {  // props 객체를 구�
         }
     };
 
-    console.log("props.product",product);
+    console.log("props.product", product);
 
     return (
         <div className='App'>
@@ -74,8 +92,8 @@ export async function getServerSideProps(context) {
     const { params } = context;
     const { id } = params;
 
-  // id를 정수로 변환합니다.
-  const numericId = parseInt(id, 10);
+    // id를 정수로 변환합니다.
+    const numericId = parseInt(id, 10);
 
 
     // 여기서 실제 서버나, 외부 API로부터 데이터를 가져올 수 있습니다.

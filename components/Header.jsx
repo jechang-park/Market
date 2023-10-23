@@ -1,9 +1,7 @@
 import Image from 'next/image';
-import { useCart } from './cartContext';
 import Link from 'next/link';
 const Header = () => {
 
-    const { cartCount } = useCart();
     return (
         <div>
             <div className="header">
@@ -22,7 +20,7 @@ const Header = () => {
                         <li>
                         <Link href="/cart">
                             <Image src="/images/top_cart.png" alt="Cart Icon" width={30} height={30} />
-                            ({cartCount})</Link></li>
+                           </Link></li>
                     </ul>
                 </div>
             </div>
