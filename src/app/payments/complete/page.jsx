@@ -31,16 +31,19 @@ export default async function Page({ searchParams }) {
         <div>
           <h1>결제가 완료되었습니다</h1>
           <ul>
-            <li>결제 상품 {payments.orderName}</li>
-            <li>주문번호 {payments.orderId} </li>
-            <li>카드회사 {payments.company}</li>
-            <li>카드번호 {card.number}</li>
-            <li>결제금액 {card.amount}</li>
-            <li>
-              결제승인날짜{" "}
-              {Intl.DateTimeFormat().format(new Date(payments.approvedAt))}
-            </li>
+            {payments.orderName && <li>결제 상품 {payments.orderName}</li>}
+            {payments.orderId && <li>주문번호 {payments.orderId}</li>}
+            {payments.company && <li>카드회사 {payments.company}</li>}
+            {card && card.number && <li>카드번호 {card.number}</li>}
+            {card && card.amount && <li>결제금액 {card.amount}</li>}
+            {payments.approvedAt && (
+              <li>
+                결제승인날짜{" "}
+                {Intl.DateTimeFormat().format(new Date(payments.approvedAt))}
+              </li>
+            )}
           </ul>
+
         </div>
       </div>
     );
