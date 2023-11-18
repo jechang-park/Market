@@ -7,8 +7,6 @@ import { loadTossPayments } from "@tosspayments/payment-sdk";
 const CartPage = ({ cartItems, error }) => {
 
 
-
-
     const handleRemoveFromCart = (productId) => {
         // 장바구니에서 상품 제거
         const updatedItems = cartItems.filter(item => item.id !== productId);
@@ -26,10 +24,7 @@ const CartPage = ({ cartItems, error }) => {
 
 
     const handleClick = async () => {
-        // 선택된 상품들에 대한 결제 처리 로직
-        // 예를 들어, 전체 가격 계산, 결제 API 호출 등
-
-        // 여기서는 전체 가격을 계산하는 간단한 예를 듭니다.
+ 
         const totalAmount = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
 
         try {
